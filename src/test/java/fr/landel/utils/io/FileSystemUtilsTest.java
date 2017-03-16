@@ -44,9 +44,11 @@ public class FileSystemUtilsTest extends AbstractTest {
 
     private static final String XML_EXT = "xml";
     private static final String TXT_EXT = "txt";
+    private static final String UNK_EXT = "unknown";
     private static final FilenameFilter XML_FILENAME_FILTER = FileSystemUtils.createFilenameFilter(XML_EXT);
-    private static final FileFilter XML_FILE_FILTER = (file) -> XML_EXT.equalsIgnoreCase(FileSystemUtils.getExtensionPart(file));
-    private static final FileFilter TXT_FILTER = (file) -> TXT_EXT.equalsIgnoreCase(FileSystemUtils.getExtensionPart(file));
+    private static final FilenameFilter UNK_FILENAME_FILTER = FileSystemUtils.createFilenameFilter(UNK_EXT);
+    private static final FileFilter XML_FILE_FILTER = file -> XML_EXT.equalsIgnoreCase(FileSystemUtils.getExtensionPart(file));
+    private static final FileFilter TXT_FILTER = file -> TXT_EXT.equalsIgnoreCase(FileSystemUtils.getExtensionPart(file));
 
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_TARGET_PATH = "target/io";
@@ -130,6 +132,10 @@ public class FileSystemUtilsTest extends AbstractTest {
             FileSystemUtils.copyDirectory(new File(CHECK_CRC32_TARGET_PATH), new File("target/dir" + UUID.randomUUID()));
 
             FileSystemUtils.copyDirectory(CHECK_CRC32_FILE, "target/dir" + UUID.randomUUID(), TXT_FILTER);
+            FileSystemUtils.copyDirectory(CHECK_CRC32_FILE, "target/dir" + UUID.randomUUID(), XML_FILENAME_FILTER);
+            FileSystemUtils.copyDirectory(CHECK_CRC32_FILE, "target/dir" + UUID.randomUUID(), UNK_FILENAME_FILTER);
+
+            FileSystemUtils.copyDirectory(new File(CHECK_CRC32_PATH), new File("target/dir" + UUID.randomUUID()), UNK_FILENAME_FILTER);
 
             String newDir = "target/dir" + UUID.randomUUID();
             if (FileSystemUtils.createDirectory(newDir)) {
