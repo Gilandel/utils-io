@@ -36,12 +36,20 @@ import org.slf4j.LoggerFactory;
  * @author Gilles Landel
  *
  */
-public class CloseableManagerTest {
+public class CloseableManagerTest extends AbstractTest {
 
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_FILE_INPUT = CHECK_CRC32_PATH + "/checkCRC32.xml";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CloseableManager.class);
+
+    /**
+     * Test constructor for {@link CloseableManager} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(CloseableManager.class));
+    }
 
     /**
      * Test method for {@link CloseableManager#isCloseable(java.lang.Class)} .

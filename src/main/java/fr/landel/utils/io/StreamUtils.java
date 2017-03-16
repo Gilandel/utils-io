@@ -63,6 +63,7 @@ public final class StreamUtils {
      * 
      */
     private StreamUtils() {
+        throw new UnsupportedOperationException();
     }
 
     /**

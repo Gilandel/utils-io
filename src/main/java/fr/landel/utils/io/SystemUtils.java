@@ -12,6 +12,8 @@
  */
 package fr.landel.utils.io;
 
+import java.util.Arrays;
+
 /**
  * System utility class
  *
@@ -19,7 +21,7 @@ package fr.landel.utils.io;
  * @author Gilles
  *
  */
-public class SystemUtils {
+public final class SystemUtils {
 
     /**
      * The operating system name
@@ -30,9 +32,16 @@ public class SystemUtils {
 
     private static final boolean IS_WINDOWS = OS_LC.indexOf("win") > -1;
     private static final boolean IS_MAC = OS_LC.indexOf("mac") > -1;
-    // Unix, Linux and AIX (IBM)
-    private static final boolean IS_UNIX = OS_LC.indexOf("nix") > -1 || OS_LC.indexOf("nux") > -1 || OS_LC.indexOf("aix") > -1;
+    // Unix, Linux, AIX (IBM) and FreeBSD
+    private static final boolean IS_UNIX = Arrays.asList("nix", "nux", "aix", "freebsd").stream().anyMatch(os -> OS_LC.indexOf(os) > -1);
     private static final boolean IS_SOLARIS = OS_LC.indexOf("sunos") > -1;
+
+    /**
+     * Hidden Constructor
+     */
+    private SystemUtils() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Check if the current OS is Windows

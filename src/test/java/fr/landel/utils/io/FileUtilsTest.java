@@ -41,7 +41,7 @@ import fr.landel.utils.commons.expect.Expect;
  * @author Gilles Landel
  *
  */
-public class FileUtilsTest {
+public class FileUtilsTest extends AbstractTest {
 
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_TARGET_PATH = "target/io";
@@ -59,6 +59,14 @@ public class FileUtilsTest {
         if (target.exists()) {
             assertTrue(FileSystemUtils.deleteDirectory(target));
         }
+    }
+
+    /**
+     * Test constructor for {@link FileUtils} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(FileUtils.class));
     }
 
     /**

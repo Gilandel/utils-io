@@ -234,5 +234,6 @@ public final class EncodingUtils {
      *
      */
     private EncodingUtils() {
+        throw new UnsupportedOperationException();
     }
 }

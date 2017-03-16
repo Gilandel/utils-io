@@ -13,6 +13,7 @@
 package fr.landel.utils.io;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -23,10 +24,18 @@ import org.junit.Test;
  * @author Gilles
  *
  */
-public class SystemUtilsTest {
+public class SystemUtilsTest extends AbstractTest {
 
     private static final String OS = System.getProperty("os.name");
     private static final String OS_LC = OS.toLowerCase();
+
+    /**
+     * Test constructor for {@link SystemUtils} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(SystemUtils.class));
+    }
 
     /**
      * Test method for {@link SystemUtils#OS_NAME}.
@@ -38,9 +47,14 @@ public class SystemUtilsTest {
 
     /**
      * Test method for {@link SystemUtils#isWindows()}.
+     * 
+     * @throws IllegalAccessException
+     *             on loading new instance error
+     * @throws InstantiationException
+     *             on loading new instance error
      */
     @Test
-    public void testIsWindows() {
+    public void testIsWindows() throws InstantiationException, IllegalAccessException {
         assertEquals(OS_LC.indexOf("win") > -1, SystemUtils.isWindows());
     }
 
@@ -57,7 +71,8 @@ public class SystemUtilsTest {
      */
     @Test
     public void testIsUnix() {
-        assertEquals(OS_LC.indexOf("nix") > -1 || OS_LC.indexOf("nux") > -1 || OS_LC.indexOf("aix") > -1, SystemUtils.isUnix());
+        assertEquals(OS_LC.indexOf("nix") > -1 || OS_LC.indexOf("nux") > -1 || OS_LC.indexOf("aix") > -1 || OS_LC.indexOf("freebsd") > -1,
+                SystemUtils.isUnix());
     }
 
     /**

@@ -40,7 +40,7 @@ import fr.landel.utils.commons.expect.Expect;
  * @author Gilles Landel
  *
  */
-public class FileSystemUtilsTest {
+public class FileSystemUtilsTest extends AbstractTest {
 
     private static final String XML_EXT = "xml";
     private static final String TXT_EXT = "txt";
@@ -75,6 +75,14 @@ public class FileSystemUtilsTest {
         if (target.isDirectory()) {
             assertTrue(FileSystemUtils.deleteDirectory(target));
         }
+    }
+
+    /**
+     * Test constructor for {@link FileSystemUtils} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(FileSystemUtils.class));
     }
 
     /**
