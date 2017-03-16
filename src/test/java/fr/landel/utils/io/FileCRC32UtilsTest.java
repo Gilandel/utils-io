@@ -30,7 +30,7 @@ import org.junit.Test;
  * @author Gilles
  *
  */
-public class FileCRC32UtilsTest {
+public class FileCRC32UtilsTest extends AbstractTest {
 
     private static final String XML_EXT = "xml";
     private static final FilenameFilter XML_FILENAME_FILTER = FileSystemUtils.createFilenameFilter(XML_EXT);
@@ -44,6 +44,14 @@ public class FileCRC32UtilsTest {
 
     private static final Long CHECK_CRC32_VALUE_UNIX = 3_893_630_386L;
     private static final Long CHECK_CRC32_DIR_VALUE_UNIX = 3_440_695_467L;
+
+    /**
+     * Test constructor for {@link FileCRC32Utils} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(FileCRC32Utils.class));
+    }
 
     /**
      * Test method for {@link FileCRC32Utils#getCRC32}.

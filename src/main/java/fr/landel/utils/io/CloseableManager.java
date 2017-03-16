@@ -55,6 +55,7 @@ public final class CloseableManager {
      * 
      */
     private CloseableManager() {
+        throw new UnsupportedOperationException();
     }
 
     /**

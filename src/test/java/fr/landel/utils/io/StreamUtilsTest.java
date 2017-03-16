@@ -31,12 +31,20 @@ import org.junit.Test;
  * @author Gilles Landel
  *
  */
-public class StreamUtilsTest {
+public class StreamUtilsTest extends AbstractTest {
 
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_TARGET_PATH = "target";
     private static final String CHECK_CRC32_FILE_INPUT = CHECK_CRC32_PATH + "/checkCRC32.xml";
     private static final String CHECK_CRC32_FILE_OUTPUT = CHECK_CRC32_TARGET_PATH + "/checkCRC32.xml";
+
+    /**
+     * Test constructor for {@link StreamUtils} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(StreamUtils.class));
+    }
 
     /**
      * Test method for

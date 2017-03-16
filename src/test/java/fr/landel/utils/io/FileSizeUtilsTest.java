@@ -13,6 +13,7 @@
 package fr.landel.utils.io;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Locale;
 
@@ -25,7 +26,15 @@ import org.junit.Test;
  * @author Gilles Landel
  *
  */
-public class FileSizeUtilsTest {
+public class FileSizeUtilsTest extends AbstractTest {
+
+    /**
+     * Test constructor for {@link FileSizeUtils} .
+     */
+    @Test
+    public void testConstructors() {
+        assertTrue(checkPrivateConstructor(FileSizeUtils.class));
+    }
 
     /**
      * Check size formatter

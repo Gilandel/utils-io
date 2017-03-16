@@ -56,12 +56,18 @@ import fr.landel.utils.commons.StringUtils;
  * @author Gilles
  *
  */
-public class SystemPropertiesTest {
+public class SystemPropertiesTest extends AbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SystemPropertiesTest.class);
 
-    private static void log(final Object object) {
-        LOGGER.info(Objects.toString(object));
+    /**
+     * Check {@link SystemProperties}
+     */
+    @Test
+    public void test() {
+        assertEquals(SystemProperties.OS_NAME, SystemProperties.valueOf("OS_NAME"));
+        assertEquals("OS_NAME", SystemProperties.OS_NAME.name());
+        assertEquals(0, SystemProperties.JAVA_RUNTIME_NAME.ordinal());
     }
 
     /**
@@ -102,5 +108,9 @@ public class SystemPropertiesTest {
                         StringUtils.isNotEmpty(property.getValue()));
             }
         }
+    }
+
+    private static void log(final Object object) {
+        LOGGER.info(Objects.toString(object));
     }
 }

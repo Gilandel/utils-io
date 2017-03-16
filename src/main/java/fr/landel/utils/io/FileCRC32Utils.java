@@ -36,6 +36,7 @@ public final class FileCRC32Utils {
      *
      */
     private FileCRC32Utils() {
+        throw new UnsupportedOperationException();
     }
 
     /**

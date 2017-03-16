@@ -82,6 +82,7 @@ public final class FileUtils {
      *
      */
     private FileUtils() {
+        throw new UnsupportedOperationException();
     }
 
     /**

@@ -44,6 +44,7 @@ public final class FileSystemUtils extends InternalFileSystemUtils {
      *
      */
     private FileSystemUtils() {
+        throw new UnsupportedOperationException();
     }
 
     /**
