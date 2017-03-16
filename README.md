@@ -1,4 +1,3 @@
-utils-io
 # utils-io
 [![Build Status](https://api.travis-ci.org/Gilandel/utils-io.svg?branch=master)](https://travis-ci.org/Gilandel/utils-io)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/90454c15ecd24ce985b5ee82cb93a558)](https://www.codacy.com/app/gilles/utils-io)
