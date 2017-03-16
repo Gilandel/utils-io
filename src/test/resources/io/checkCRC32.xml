@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>fr.landel</groupId>
+		<artifactId>test</artifactId>
+		<version>3.3.0-BETA-12-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>test-commons</artifactId>
+	<version>1.7.0-BETA-12-SNAPSHOT</version>
+
+	<profiles>
+		<profile>
+			<id>exe</id>
+			<build>
+				<plugins>
+					<!-- create obfuscated jar -->
+					<plugin>
+						<groupId>com.pyx4me</groupId>
+						<artifactId>proguard-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>proguard</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<proguardInclude>${basedir}/proguard.properties</proguardInclude>
+							<libs>
+								<lib>${java.home}/lib/rt.jar</lib>
+							</libs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
