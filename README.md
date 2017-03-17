@@ -21,7 +21,7 @@ Work progress:
 </dependency>
 ```
 
-Features:
+## Features:
 - CloseableManager: A manager for closeable, to open X closeable and to close them (written before Java7 autocloseable)
 - EncodingUtils: All encoding (BOM, String and Charset)
 - FileCRC32Utils: To get CRC32 from a file
@@ -31,3 +31,6 @@ Features:
 - StreamUtils: To manage stream files (related to Input/OutputStream)
 - SystemProperties: A list of system properties (like os.name, java.home,...)
 - SystemUtils: To get operating system info
+
+## License
+See [https://github.com/Gilandel/utils/LICENSE](main project license): Apache License, version 2.0
