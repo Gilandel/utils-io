@@ -1,5 +1,5 @@
 # utils-io
-[![Build Status](https://api.travis-ci.org/Gilandel/utils-io.svg?branch=master)](https://travis-ci.org/Gilandel/utils-io)
+[![Build Status](https://api.travis-ci.org/Gilandel/utils-io.svg?branch=master)](https://travis-ci.org/Gilandel/utils-io/builds)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/8b9cbba23a594f95bdc50db076c7ea4d)](https://www.codacy.com/app/gilles/utils-io)
 [![Dependency Status](https://www.versioneye.com/user/projects/58b29b6f7b9e15003a17e544/badge.svg?style=flat)](https://www.versioneye.com/user/projects/58b29b6f7b9e15003a17e544)
 [![codecov.io](https://codecov.io/github/Gilandel/utils-io/coverage.svg?branch=master)](https://codecov.io/github/Gilandel/utils-io?branch=master)
