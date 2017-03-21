@@ -5,6 +5,10 @@
 [![codecov.io](https://codecov.io/github/Gilandel/utils-io/coverage.svg?branch=master)](https://codecov.io/github/Gilandel/utils-io?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/fr.landel.utils/utils-io/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fr.landel.utils/utils-io)
 
+[![Tokei LoC](https://tokei.rs/b1/github/Gilandel/utils-io)](https://github.com/Aaronepower/tokei)
+[![Tokei NoFiles](https://tokei.rs/b1/github/Gilandel/utils-io?category=files)](https://github.com/Aaronepower/tokei)
+[![Tokei LoComments](https://tokei.rs/b1/github/Gilandel/utils-io?category=comments)](https://github.com/Aaronepower/tokei)
+
 [![codecov.io tree](https://codecov.io/gh/Gilandel/utils-io/branch/master/graphs/tree.svg)](https://codecov.io/gh/Gilandel/utils-io/branch/master)
 [![codecov.io sunburst](https://codecov.io/gh/Gilandel/utils-io/branch/master/graphs/sunburst.svg)](https://codecov.io/gh/Gilandel/utils-io/branch/master)
 
