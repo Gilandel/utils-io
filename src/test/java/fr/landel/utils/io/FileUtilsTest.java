@@ -32,7 +32,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import fr.landel.utils.assertor.Assertor;
-import fr.landel.utils.commons.expect.Expect;
 
 /**
  * Check file utils
@@ -102,7 +101,7 @@ public class FileUtilsTest extends AbstractTest {
             fail(e.getMessage());
         }
 
-        Expect.exception(() -> FileUtils.getFileContent("unknown"), IOException.class, Pattern.compile(".*?unknown.*"));
+        assertException(() -> FileUtils.getFileContent("unknown"), IOException.class, Pattern.compile(".*?unknown.*"));
 
         try (ByteArrayInputStream bais = new ByteArrayInputStream(test.getBytes(EncodingUtils.CHARSET_UTF_8))) {
             StringBuilder sb = FileUtils.getFileContent(bais, EncodingUtils.CHARSET_US_ASCII);
@@ -257,19 +256,19 @@ public class FileUtilsTest extends AbstractTest {
         FileUtils.writeFileContent(new StringBuilder(), file1, StandardCharsets.UTF_8);
         assertTrue(FileUtils.isEqual(file1, file2));
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileUtils.isEqual(null, copiedFile);
         }, IllegalArgumentException.class, "The first file isn't valid");
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileUtils.isEqual(new File("./"), copiedFile);
         }, IllegalArgumentException.class, "The first file isn't valid");
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileUtils.isEqual(referenceFile, null);
         }, IllegalArgumentException.class, "The second file isn't valid");
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileUtils.isEqual(referenceFile, new File("./"));
         }, IllegalArgumentException.class, "The second file isn't valid");
     }
