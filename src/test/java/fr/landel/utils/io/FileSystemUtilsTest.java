@@ -62,6 +62,7 @@ public class FileSystemUtilsTest extends AbstractTest {
     private static final long CHECK_CRC32_FILE_SIZE_UNIX = 1_102L;
 
     private static final String ERROR_PARAM_NULL = "At least one parameter is null";
+    private static final String ERROR_PARAM_NULL_COMBINATION = "the combination 'false' and ' AND ' is invalid (message: At least one parameter is null)";
 
     /**
      * Remove test directory
@@ -524,12 +525,12 @@ public class FileSystemUtilsTest extends AbstractTest {
         assertException(() -> {
             FileSystemUtils.createFilenameFilter();
             fail();
-        }, IllegalArgumentException.class, ERROR_PARAM_NULL);
+        }, IllegalArgumentException.class, ERROR_PARAM_NULL_COMBINATION);
 
         assertException(() -> {
             FileSystemUtils.createFilenameFilter((String[]) null);
             fail();
-        }, IllegalArgumentException.class, ERROR_PARAM_NULL);
+        }, IllegalArgumentException.class, ERROR_PARAM_NULL_COMBINATION);
 
         assertException(() -> {
             FileSystemUtils.createFilenameFilter(new String[] {"log", null});
