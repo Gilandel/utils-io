@@ -18,6 +18,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -48,15 +49,19 @@ public final class FileSystemUtils extends InternalFileSystemUtils {
     }
 
     /**
-     * Replace all special characters in filename by the replacement string.
+     * Replace all special characters in filename by the replacement string. If
+     * replacement is null, the replacement becomes an empty String.
      * 
      * @param filename
      *            The input filename
      * @param replacement
      *            The replacement string
      * @return The filename processed
+     * @throws NullPointerException
+     *             if filename is {@code null}
      */
     public static String replaceSpecialCharacters(final String filename, final String replacement) {
+        Objects.requireNonNull(filename);
         if (replacement != null) {
             return PATTERN_SPECIAL_CHARACTERS.matcher(filename).replaceAll(replacement);
         }
