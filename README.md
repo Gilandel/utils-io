@@ -4,6 +4,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/58b29b6f7b9e15003a17e544/badge.svg?style=flat)](https://www.versioneye.com/user/projects/58b29b6f7b9e15003a17e544)
 [![codecov.io](https://codecov.io/github/Gilandel/utils-io/coverage.svg?branch=master)](https://codecov.io/github/Gilandel/utils-io?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/fr.landel.utils/utils-io/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fr.landel.utils/utils-io)
+[![Javadocs](http://www.javadoc.io/badge/fr.landel.utils/utils-io.svg)](http://www.javadoc.io/doc/fr.landel.utils/utils-io)
 
 [![Tokei LoC](https://tokei.rs/b1/github/Gilandel/utils-io)](https://github.com/Aaronepower/tokei)
 [![Tokei NoFiles](https://tokei.rs/b1/github/Gilandel/utils-io?category=files)](https://github.com/Aaronepower/tokei)
@@ -37,4 +38,4 @@ Work progress:
 - SystemUtils: To get operating system info
 
 ## License
-See [main project license](https://github.com/Gilandel/utils/LICENSE): Apache License, version 2.0
+Apache License, version 2.0
