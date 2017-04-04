@@ -43,7 +43,7 @@ public class FileCRC32UtilsTest extends AbstractTest {
     private static final Long CHECK_CRC32_DIR_VALUE_WIN = 914_046_700L;
 
     private static final Long CHECK_CRC32_VALUE_UNIX = 3_893_630_386L;
-    private static final Long CHECK_CRC32_DIR_VALUE_UNIX = 3_440_695_467L;
+    private static final Long CHECK_CRC32_DIR_VALUE_UNIX = 580_225_974L;
 
     /**
      * Test constructor for {@link FileCRC32Utils} .
