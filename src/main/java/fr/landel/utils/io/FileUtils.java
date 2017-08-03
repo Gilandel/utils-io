@@ -146,7 +146,7 @@ public final class FileUtils {
 
         final StringBuilder buffer;
 
-        final BufferedInputStream bis = StreamUtils.createBufferedInputStream(file);
+        final BufferedInputStream bis = IOStreamUtils.createBufferedInputStream(file);
 
         buffer = getFileContent(bis, charset);
 
@@ -258,7 +258,7 @@ public final class FileUtils {
     public static void writeFileContent(final StringBuilder buffer, final File file, final Charset charset) throws IOException {
         if (buffer != null && file != null && FileSystemUtils.createDirectory(file.getParentFile())) {
 
-            final BufferedOutputStream bos = StreamUtils.createBufferedOutputStream(file);
+            final BufferedOutputStream bos = IOStreamUtils.createBufferedOutputStream(file);
 
             bos.write(buffer.toString().getBytes(ObjectUtils.defaultIfNull(charset, StandardCharsets.UTF_8)));
 
@@ -318,7 +318,7 @@ public final class FileUtils {
         Assertor.that(inputStream).isNotNull().orElseThrow("The 'inpuStream' parameter cannot be null");
         Assertor.that(file).isNotNull().orElseThrow("The 'file' parameter cannot be null");
 
-        final BufferedOutputStream bos = StreamUtils.createBufferedOutputStream(file);
+        final BufferedOutputStream bos = IOStreamUtils.createBufferedOutputStream(file);
 
         writeStream(inputStream, bos);
 

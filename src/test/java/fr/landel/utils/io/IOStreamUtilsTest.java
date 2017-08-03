@@ -31,7 +31,7 @@ import org.junit.Test;
  * @author Gilles Landel
  *
  */
-public class StreamUtilsTest extends AbstractTest {
+public class IOStreamUtilsTest extends AbstractTest {
 
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_TARGET_PATH = "target";
@@ -39,22 +39,22 @@ public class StreamUtilsTest extends AbstractTest {
     private static final String CHECK_CRC32_FILE_OUTPUT = CHECK_CRC32_TARGET_PATH + "/checkCRC32.xml";
 
     /**
-     * Test constructor for {@link StreamUtils} .
+     * Test constructor for {@link IOStreamUtils} .
      */
     @Test
     public void testConstructors() {
-        assertTrue(checkPrivateConstructor(StreamUtils.class));
+        assertTrue(checkPrivateConstructor(IOStreamUtils.class));
     }
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedReader(java.lang.String, java.lang.String)}
+     * {@link IOStreamUtils#createBufferedReader(java.lang.String, java.lang.String)}
      * .
      */
     @Test
     public void testCreateBufferedReaderStringString() {
         try {
-            assertNotNull(StreamUtils.createBufferedReader(CHECK_CRC32_FILE_INPUT, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createBufferedReader(CHECK_CRC32_FILE_INPUT, EncodingUtils.ENCODING_UTF_8));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_INPUT));
 
@@ -70,7 +70,7 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedReader(java.io.File, java.lang.String)}
+     * {@link IOStreamUtils#createBufferedReader(java.io.File, java.lang.String)}
      * .
      */
     @Test
@@ -78,7 +78,7 @@ public class StreamUtilsTest extends AbstractTest {
         try {
             File file = new File(CHECK_CRC32_FILE_INPUT);
 
-            assertNotNull(StreamUtils.createBufferedReader(file, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createBufferedReader(file, EncodingUtils.ENCODING_UTF_8));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -94,13 +94,13 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createInputStreamReader(java.lang.String, java.lang.String)}
+     * {@link IOStreamUtils#createInputStreamReader(java.lang.String, java.lang.String)}
      * .
      */
     @Test
     public void testCreateInputStreamReaderStringString() {
         try {
-            assertNotNull(StreamUtils.createInputStreamReader(CHECK_CRC32_FILE_INPUT, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createInputStreamReader(CHECK_CRC32_FILE_INPUT, EncodingUtils.ENCODING_UTF_8));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_INPUT));
 
@@ -116,7 +116,7 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createInputStreamReader(java.io.File, java.lang.String)}
+     * {@link IOStreamUtils#createInputStreamReader(java.io.File, java.lang.String)}
      * .
      */
     @Test
@@ -124,8 +124,8 @@ public class StreamUtilsTest extends AbstractTest {
         try {
             File file = new File(CHECK_CRC32_FILE_INPUT);
 
-            assertNotNull(StreamUtils.createInputStreamReader(file, EncodingUtils.ENCODING_UTF_8));
-            assertNotNull(StreamUtils.createInputStreamReader(file, null));
+            assertNotNull(IOStreamUtils.createInputStreamReader(file, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createInputStreamReader(file, null));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -141,7 +141,7 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createInputStreamReader(java.net.URL, java.lang.String)}
+     * {@link IOStreamUtils#createInputStreamReader(java.net.URL, java.lang.String)}
      * .
      */
     @Test
@@ -150,8 +150,8 @@ public class StreamUtilsTest extends AbstractTest {
             File file = new File(CHECK_CRC32_FILE_INPUT);
             URL url = file.toURI().toURL();
 
-            assertNotNull(StreamUtils.createInputStreamReader(url, EncodingUtils.ENCODING_UTF_8));
-            assertNotNull(StreamUtils.createInputStreamReader(url, null));
+            assertNotNull(IOStreamUtils.createInputStreamReader(url, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createInputStreamReader(url, null));
 
             assertTrue(CloseableManager.isCloseable(url));
 
@@ -168,12 +168,12 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.lang.String)} .
+     * {@link IOStreamUtils#createBufferedWriter(java.lang.String)} .
      */
     @Test
     public void testCreateOutputStreamWriterString() {
         try {
-            assertNotNull(StreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT));
+            assertNotNull(IOStreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -189,13 +189,13 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.lang.String, java.lang.String)}
+     * {@link IOStreamUtils#createBufferedWriter(java.lang.String, java.lang.String)}
      * .
      */
     @Test
     public void testCreateOutputStreamWriterStringString() {
         try {
-            assertNotNull(StreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT, EncodingUtils.ENCODING_UTF_8));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -211,12 +211,12 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.lang.String, boolean)} .
+     * {@link IOStreamUtils#createBufferedWriter(java.lang.String, boolean)} .
      */
     @Test
     public void testCreateOutputStreamWriterStringBoolean() {
         try {
-            assertNotNull(StreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT, true));
+            assertNotNull(IOStreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT, true));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -231,14 +231,14 @@ public class StreamUtilsTest extends AbstractTest {
     }
 
     /**
-     * Test method for {@link StreamUtils#createBufferedWriter(java.io.File)} .
+     * Test method for {@link IOStreamUtils#createBufferedWriter(java.io.File)} .
      */
     @Test
     public void testCreateOutputStreamWriterFile() {
         try {
             File file = new File(CHECK_CRC32_FILE_OUTPUT);
 
-            assertNotNull(StreamUtils.createBufferedWriter(file));
+            assertNotNull(IOStreamUtils.createBufferedWriter(file));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -254,7 +254,7 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.io.File, java.lang.String)}
+     * {@link IOStreamUtils#createBufferedWriter(java.io.File, java.lang.String)}
      * .
      */
     @Test
@@ -262,7 +262,7 @@ public class StreamUtilsTest extends AbstractTest {
         try {
             File file = new File(CHECK_CRC32_FILE_OUTPUT);
 
-            assertNotNull(StreamUtils.createBufferedWriter(file, EncodingUtils.ENCODING_UTF_8));
+            assertNotNull(IOStreamUtils.createBufferedWriter(file, EncodingUtils.ENCODING_UTF_8));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -278,14 +278,14 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.io.File, boolean)} .
+     * {@link IOStreamUtils#createBufferedWriter(java.io.File, boolean)} .
      */
     @Test
     public void testCreateOutputStreamWriterFileBoolean() {
         try {
             File file = new File(CHECK_CRC32_FILE_OUTPUT);
 
-            assertNotNull(StreamUtils.createBufferedWriter(file, true));
+            assertNotNull(IOStreamUtils.createBufferedWriter(file, true));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -301,13 +301,13 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.lang.String, java.lang.String, boolean)}
+     * {@link IOStreamUtils#createBufferedWriter(java.lang.String, java.lang.String, boolean)}
      * .
      */
     @Test
     public void testCreateOutputStreamWriterStringStringBoolean() {
         try {
-            assertNotNull(StreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT, EncodingUtils.ENCODING_UTF_8, true));
+            assertNotNull(IOStreamUtils.createBufferedWriter(CHECK_CRC32_FILE_OUTPUT, EncodingUtils.ENCODING_UTF_8, true));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -323,7 +323,7 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedWriter(java.io.File, java.lang.String, boolean)}
+     * {@link IOStreamUtils#createBufferedWriter(java.io.File, java.lang.String, boolean)}
      * .
      */
     @Test
@@ -331,7 +331,7 @@ public class StreamUtilsTest extends AbstractTest {
         try {
             File file = new File(CHECK_CRC32_FILE_OUTPUT);
 
-            assertNotNull(StreamUtils.createBufferedWriter(file, EncodingUtils.ENCODING_UTF_8, true));
+            assertNotNull(IOStreamUtils.createBufferedWriter(file, EncodingUtils.ENCODING_UTF_8, true));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -347,14 +347,14 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createDataInputStream(java.lang.String)} .
+     * {@link IOStreamUtils#createDataInputStream(java.lang.String)} .
      */
     @Test
     public void testCreateDataInputStream() {
         try {
-            assertNotNull(StreamUtils.createDataInputStream(CHECK_CRC32_FILE_OUTPUT));
-            assertNotNull(StreamUtils.createDataInputStream(new File(CHECK_CRC32_FILE_OUTPUT)));
-            assertNotNull(StreamUtils.createDataInputStream(new File(CHECK_CRC32_FILE_OUTPUT).toURI().toURL()));
+            assertNotNull(IOStreamUtils.createDataInputStream(CHECK_CRC32_FILE_OUTPUT));
+            assertNotNull(IOStreamUtils.createDataInputStream(new File(CHECK_CRC32_FILE_OUTPUT)));
+            assertNotNull(IOStreamUtils.createDataInputStream(new File(CHECK_CRC32_FILE_OUTPUT).toURI().toURL()));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -370,13 +370,13 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedOutputStream(java.lang.String)} .
+     * {@link IOStreamUtils#createBufferedOutputStream(java.lang.String)} .
      */
     @Test
     public void testCreateDataOutputStream() {
         try {
-            assertNotNull(StreamUtils.createDataOutputStream(CHECK_CRC32_FILE_OUTPUT));
-            assertNotNull(StreamUtils.createDataOutputStream(new File(CHECK_CRC32_FILE_OUTPUT)));
+            assertNotNull(IOStreamUtils.createDataOutputStream(CHECK_CRC32_FILE_OUTPUT));
+            assertNotNull(IOStreamUtils.createDataOutputStream(new File(CHECK_CRC32_FILE_OUTPUT)));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -392,12 +392,12 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedOutputStream(java.lang.String)} .
+     * {@link IOStreamUtils#createBufferedOutputStream(java.lang.String)} .
      */
     @Test
     public void testCreateBufferedOutputStreamString() {
         try {
-            assertNotNull(StreamUtils.createBufferedOutputStream(CHECK_CRC32_FILE_OUTPUT));
+            assertNotNull(IOStreamUtils.createBufferedOutputStream(CHECK_CRC32_FILE_OUTPUT));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -413,13 +413,13 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedOutputStream(java.lang.String, boolean)}
+     * {@link IOStreamUtils#createBufferedOutputStream(java.lang.String, boolean)}
      * .
      */
     @Test
     public void testCreateBufferedOutputStreamStringBoolean() {
         try {
-            assertNotNull(StreamUtils.createBufferedOutputStream(CHECK_CRC32_FILE_OUTPUT, true));
+            assertNotNull(IOStreamUtils.createBufferedOutputStream(CHECK_CRC32_FILE_OUTPUT, true));
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_OUTPUT));
 
@@ -435,14 +435,14 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedOutputStream(java.io.File)} .
+     * {@link IOStreamUtils#createBufferedOutputStream(java.io.File)} .
      */
     @Test
     public void testCreateBufferedOutputStreamFile() {
         try {
             File file = new File(CHECK_CRC32_FILE_OUTPUT);
 
-            assertNotNull(StreamUtils.createBufferedOutputStream(file));
+            assertNotNull(IOStreamUtils.createBufferedOutputStream(file));
 
             assertTrue(CloseableManager.isCloseable(file));
 
@@ -458,14 +458,14 @@ public class StreamUtilsTest extends AbstractTest {
 
     /**
      * Test method for
-     * {@link StreamUtils#createBufferedOutputStream(java.io.File, boolean)} .
+     * {@link IOStreamUtils#createBufferedOutputStream(java.io.File, boolean)} .
      */
     @Test
     public void testCreateBufferedOutputStreamFileBoolean() {
         try {
             File file = new File(CHECK_CRC32_FILE_OUTPUT);
 
-            assertNotNull(StreamUtils.createBufferedOutputStream(file, true));
+            assertNotNull(IOStreamUtils.createBufferedOutputStream(file, true));
 
             assertTrue(CloseableManager.isCloseable(file));
 
