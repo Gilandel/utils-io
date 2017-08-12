@@ -525,12 +525,12 @@ public class FileSystemUtilsTest extends AbstractTest {
         assertException(() -> {
             FileSystemUtils.createFilenameFilter();
             fail();
-        }, IllegalArgumentException.class, ERROR_PARAM_NULL_COMBINATION);
+        }, IllegalArgumentException.class, ERROR_PARAM_NULL);
 
         assertException(() -> {
             FileSystemUtils.createFilenameFilter((String[]) null);
             fail();
-        }, IllegalArgumentException.class, ERROR_PARAM_NULL_COMBINATION);
+        }, IllegalArgumentException.class, ERROR_PARAM_NULL);
 
         assertException(() -> {
             FileSystemUtils.createFilenameFilter(new String[] {"log", null});
