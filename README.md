@@ -33,7 +33,7 @@ Work progress:
 - FileSizeUtils: List all file sizes from octects to exabioctets
 - FileSystemUtils: All methods to manage files and directories
 - FileUtils: To read, write and compare files
-- StreamUtils: To manage stream files (related to Input/OutputStream)
+- IOStreamUtils: To manage stream files (related to Input/OutputStream)
 - SystemProperties: A list of system properties (like os.name, java.home,...)
 - SystemUtils: To get operating system info
 
