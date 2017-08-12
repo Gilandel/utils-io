@@ -91,7 +91,7 @@ public class CloseableManagerTest extends AbstractTest {
             CloseableManager.isCloseable((String) null);
 
             // specific errors
-            StreamUtils.createBufferedInputStream(CHECK_CRC32_FILE_INPUT);
+            IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE_INPUT);
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_INPUT));
             CloseableManager.close(CHECK_CRC32_FILE_INPUT);
 
@@ -116,7 +116,7 @@ public class CloseableManagerTest extends AbstractTest {
 
             // specific errors
             File file = new File(CHECK_CRC32_FILE_INPUT);
-            StreamUtils.createBufferedInputStream(file);
+            IOStreamUtils.createBufferedInputStream(file);
             assertTrue(CloseableManager.isCloseable(file));
             CloseableManager.close(file);
 
@@ -142,7 +142,7 @@ public class CloseableManagerTest extends AbstractTest {
 
             // specific errors
             URL url = new File(CHECK_CRC32_FILE_INPUT).toURI().toURL();
-            StreamUtils.createBufferedInputStream(url);
+            IOStreamUtils.createBufferedInputStream(url);
             assertTrue(CloseableManager.isCloseable(url));
             CloseableManager.close(url);
 
@@ -210,7 +210,7 @@ public class CloseableManagerTest extends AbstractTest {
     @Test
     public void testCloseAll() {
         try {
-            StreamUtils.createBufferedInputStream(CHECK_CRC32_FILE_INPUT);
+            IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE_INPUT);
 
             assertTrue(CloseableManager.isCloseable(CHECK_CRC32_FILE_INPUT));
 
@@ -222,7 +222,7 @@ public class CloseableManagerTest extends AbstractTest {
         }
 
         try {
-            BufferedInputStream bis = StreamUtils.createBufferedInputStream(CHECK_CRC32_FILE_INPUT);
+            BufferedInputStream bis = IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE_INPUT);
 
             bis.close();
             CloseableManager.closeAll();

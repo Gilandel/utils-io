@@ -38,7 +38,7 @@ import fr.landel.utils.assertor.Assertor;
  * @author Gilles Landel
  *
  */
-public final class StreamUtils {
+public final class IOStreamUtils {
 
     /**
      * Default encoding
@@ -62,7 +62,7 @@ public final class StreamUtils {
      * Constructor.
      * 
      */
-    private StreamUtils() {
+    private IOStreamUtils() {
         throw new UnsupportedOperationException();
     }
 

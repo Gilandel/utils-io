@@ -197,7 +197,7 @@ public final class FileCRC32Utils {
 
         // Internal: The CRC object isn't reset
 
-        final BufferedInputStream bis = StreamUtils.createBufferedInputStream(file);
+        final BufferedInputStream bis = IOStreamUtils.createBufferedInputStream(file);
 
         while ((bufferReadSize = bis.read(buffer, 0, BUFFER_SIZE)) >= 0) {
             crc32.update(buffer, 0, bufferReadSize);

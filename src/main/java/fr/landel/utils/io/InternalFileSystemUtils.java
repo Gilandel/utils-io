@@ -105,8 +105,8 @@ class InternalFileSystemUtils {
 
         if (InternalFileSystemUtils.createDirectory(target.getParentFile())) {
             if (!src.getAbsolutePath().equals(dest.getAbsolutePath())) {
-                final BufferedInputStream bis = StreamUtils.createBufferedInputStream(src);
-                final BufferedOutputStream bos = StreamUtils.createBufferedOutputStream(target);
+                final BufferedInputStream bis = IOStreamUtils.createBufferedInputStream(src);
+                final BufferedOutputStream bos = IOStreamUtils.createBufferedOutputStream(target);
 
                 while ((bufferReadSize = bis.read(buffer, 0, BUFFER_SIZE)) >= 0) {
                     bos.write(buffer, 0, bufferReadSize);

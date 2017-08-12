@@ -31,7 +31,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import fr.landel.utils.assertor.Assertor;
-import fr.landel.utils.commons.expect.Expect;
 
 /**
  * Check utility class (files).
@@ -63,6 +62,7 @@ public class FileSystemUtilsTest extends AbstractTest {
     private static final long CHECK_CRC32_FILE_SIZE_UNIX = 1_102L;
 
     private static final String ERROR_PARAM_NULL = "At least one parameter is null";
+    private static final String ERROR_PARAM_NULL_COMBINATION = "the combination 'false' and ' AND ' is invalid (message: At least one parameter is null)";
 
     /**
      * Remove test directory
@@ -145,32 +145,32 @@ public class FileSystemUtilsTest extends AbstractTest {
             fail(e.getMessage());
         }
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory(null, (String) null);
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory(null, "");
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory("", null);
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory(null, (File) null);
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory(null, new File(""));
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory(new File(""), null);
             fail();
         }, IllegalArgumentException.class);
@@ -220,18 +220,18 @@ public class FileSystemUtilsTest extends AbstractTest {
             fail(e.getMessage());
         }
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.copyDirectory(CHECK_CRC32_TARGET_PATH, "target/dir" + UUID.randomUUID());
             fail();
         }, FileNotFoundException.class, "the source doesn't exist");
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.moveDirectory(CHECK_CRC32_TARGET_PATH, "target/dir" + UUID.randomUUID());
             fail();
         }, FileNotFoundException.class, "the source doesn't exist");
 
         if (SystemUtils.isWindows()) {
-            Expect.exception(() -> {
+            assertException(() -> {
                 FileSystemUtils.moveDirectory(new File(dest3), new File("file>zzz"));
                 fail();
             }, IOException.class, "cannot access or create the destination directory");
@@ -272,12 +272,12 @@ public class FileSystemUtilsTest extends AbstractTest {
             FileSystemUtils.copyDirectory(CHECK_CRC32_PATH, CHECK_CRC32_TARGET_PATH);
             assertTrue(FileSystemUtils.deleteDirectory(new File(CHECK_CRC32_TARGET_PATH), XML_FILENAME_FILTER));
 
-            Expect.exception(() -> {
+            assertException(() -> {
                 assertFalse(FileSystemUtils.deleteDirectory((File) null));
                 fail();
             }, IllegalArgumentException.class, ERROR_PARAM_NULL);
 
-            Expect.exception(() -> {
+            assertException(() -> {
                 assertFalse(FileSystemUtils.deleteDirectory(CHECK_CRC32_FILE));
                 fail();
             }, IllegalArgumentException.class, "not a directory");
@@ -330,33 +330,33 @@ public class FileSystemUtilsTest extends AbstractTest {
         // same file
         FileSystemUtils.moveFile(file, file);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.moveFile(new File(CHECK_CRC32_TARGET_PATH, "output2.file"), new File(CHECK_CRC32_TARGET_PATH, "output3.file"));
             fail();
         }, FileNotFoundException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.moveFile(null, CHECK_CRC32_TARGET_PATH + "output3.file");
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.moveFile((String) null, null);
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.moveFile(CHECK_CRC32_TARGET_PATH + "output3.file", null);
             fail();
         }, IllegalArgumentException.class);
 
         if (SystemUtils.isWindows()) {
-            Expect.exception(() -> {
+            assertException(() -> {
                 FileSystemUtils.moveFile(CHECK_CRC32_TARGET_PATH + "/output4.file", "file>zzz");
                 fail();
             }, FileNotFoundException.class);
 
-            Expect.exception(() -> {
+            assertException(() -> {
                 FileSystemUtils.moveFile(file, new File("file>zzz"));
                 fail();
             }, FileNotFoundException.class);
@@ -459,12 +459,12 @@ public class FileSystemUtilsTest extends AbstractTest {
             assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILE_FILTER));
         }
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.getSize((String) null);
             fail();
         }, IllegalArgumentException.class);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.getSize((File) null);
             fail();
         }, IllegalArgumentException.class);
@@ -522,17 +522,17 @@ public class FileSystemUtilsTest extends AbstractTest {
 
         assertFalse(filter.accept(null, null));
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.createFilenameFilter();
             fail();
-        }, IllegalArgumentException.class, ERROR_PARAM_NULL);
+        }, IllegalArgumentException.class, ERROR_PARAM_NULL_COMBINATION);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.createFilenameFilter((String[]) null);
             fail();
-        }, IllegalArgumentException.class, ERROR_PARAM_NULL);
+        }, IllegalArgumentException.class, ERROR_PARAM_NULL_COMBINATION);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.createFilenameFilter(new String[] {"log", null});
             fail();
         }, IllegalArgumentException.class, "extensions array cannot contains 'null'");
@@ -574,12 +574,12 @@ public class FileSystemUtilsTest extends AbstractTest {
 
         assertFalse(FileSystemUtils.isDirectoryEmpty(CHECK_CRC32_FILE));
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.isDirectoryEmpty((String) null);
             fail();
         }, IllegalArgumentException.class, ERROR_PARAM_NULL);
 
-        Expect.exception(() -> {
+        assertException(() -> {
             FileSystemUtils.isDirectoryEmpty((File) null);
             fail();
         }, IllegalArgumentException.class, ERROR_PARAM_NULL);

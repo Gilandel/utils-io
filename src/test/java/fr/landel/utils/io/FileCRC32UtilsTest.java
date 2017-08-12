@@ -43,7 +43,7 @@ public class FileCRC32UtilsTest extends AbstractTest {
     private static final Long CHECK_CRC32_DIR_VALUE_WIN = 914_046_700L;
 
     private static final Long CHECK_CRC32_VALUE_UNIX = 3_893_630_386L;
-    private static final Long CHECK_CRC32_DIR_VALUE_UNIX = 3_440_695_467L;
+    private static final Long CHECK_CRC32_DIR_VALUE_UNIX = 580_225_974L;
 
     /**
      * Test constructor for {@link FileCRC32Utils} .
@@ -62,7 +62,7 @@ public class FileCRC32UtilsTest extends AbstractTest {
             if (SystemUtils.isWindows()) {
                 assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_FILE));
                 assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(new File(CHECK_CRC32_FILE)));
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(StreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
+                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
 
                 assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
                 assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILE_FILTER));
@@ -71,7 +71,7 @@ public class FileCRC32UtilsTest extends AbstractTest {
             } else {
                 assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_FILE));
                 assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(new File(CHECK_CRC32_FILE)));
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(StreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
+                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
 
                 assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
                 assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILE_FILTER));
