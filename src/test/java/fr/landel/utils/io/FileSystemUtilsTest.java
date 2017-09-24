@@ -62,7 +62,6 @@ public class FileSystemUtilsTest extends AbstractTest {
     private static final long CHECK_CRC32_FILE_SIZE_UNIX = 1_102L;
 
     private static final String ERROR_PARAM_NULL = "At least one parameter is null";
-    private static final String ERROR_PARAM_NULL_COMBINATION = "the combination 'false' and ' AND ' is invalid (message: At least one parameter is null)";
 
     /**
      * Remove test directory

@@ -35,7 +35,7 @@
 		<gpg.home>${env.HOME}/build/Gilandel/${project.artifactId}/distribution</gpg.home>
 		
 		<!-- Dependencies version -->
-		<utils-commons.version>1.0.9</utils-commons.version>
+		<utils-commons.version>1.0.10</utils-commons.version>
 		<utils-assertor.version>1.0.4</utils-assertor.version>
 		<utils-microbenchmark.version>1.0.3</utils-microbenchmark.version>
 	</properties>
