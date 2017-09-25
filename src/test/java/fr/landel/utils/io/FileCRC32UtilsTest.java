@@ -39,11 +39,8 @@ public class FileCRC32UtilsTest extends AbstractTest {
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_FILE = CHECK_CRC32_PATH + "/checkCRC32.xml";
 
-    private static final Long CHECK_CRC32_VALUE_WIN = 1_476_569_244L;
-    private static final Long CHECK_CRC32_DIR_VALUE_WIN = 914_046_700L;
-
-    private static final Long CHECK_CRC32_VALUE_UNIX = 3_893_630_386L;
-    private static final Long CHECK_CRC32_DIR_VALUE_UNIX = 580_225_974L;
+    private static final Long CHECK_CRC32_VALUE = 1_476_569_244L;
+    private static final Long CHECK_CRC32_DIR_VALUE = 914_046_700L;
 
     /**
      * Test constructor for {@link FileCRC32Utils} .
@@ -59,25 +56,14 @@ public class FileCRC32UtilsTest extends AbstractTest {
     @Test
     public void testGetCRC32() {
         try {
-            if (SystemUtils.isWindows()) {
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_FILE));
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(new File(CHECK_CRC32_FILE)));
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_FILE));
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(new File(CHECK_CRC32_FILE)));
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
 
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILE_FILTER));
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILE_FILTER));
 
-                assertEquals(CHECK_CRC32_DIR_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH));
-            } else {
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_FILE));
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(new File(CHECK_CRC32_FILE)));
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(IOStreamUtils.createBufferedInputStream(CHECK_CRC32_FILE)));
-
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILE_FILTER));
-
-                assertEquals(CHECK_CRC32_DIR_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH));
-            }
+            assertEquals(CHECK_CRC32_DIR_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH));
 
             final File emptyDir = new File("target/empty");
             assertTrue(FileSystemUtils.createDirectory(emptyDir));

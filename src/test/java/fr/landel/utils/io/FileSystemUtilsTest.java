@@ -53,13 +53,9 @@ public class FileSystemUtilsTest extends AbstractTest {
     private static final String CHECK_CRC32_TARGET_PATH = "target/io";
     private static final String CHECK_CRC32_FILE = CHECK_CRC32_PATH + "/checkCRC32.xml";
 
-    private static final Long CHECK_CRC32_VALUE_WIN = 1_476_569_244L;
-    private static final long CHECK_CRC32_PATH_SIZE_WIN = 1_160L;
-    private static final long CHECK_CRC32_FILE_SIZE_WIN = 1_143L;
-
-    private static final Long CHECK_CRC32_VALUE_UNIX = 3_893_630_386L;
-    private static final long CHECK_CRC32_PATH_SIZE_UNIX = 1_119L;
-    private static final long CHECK_CRC32_FILE_SIZE_UNIX = 1_102L;
+    private static final Long CHECK_CRC32_VALUE = 1_476_569_244L;
+    private static final long CHECK_CRC32_PATH_SIZE = 1_160L;
+    private static final long CHECK_CRC32_FILE_SIZE = 1_143L;
 
     private static final String ERROR_PARAM_NULL = "At least one parameter is null";
 
@@ -113,11 +109,8 @@ public class FileSystemUtilsTest extends AbstractTest {
     public void testCopyDirectory() {
         try {
             FileSystemUtils.copyDirectory(CHECK_CRC32_PATH, CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER);
-            if (SystemUtils.isWindows()) {
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER));
-            } else {
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER));
-            }
+
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER));
 
             String dest = "target/dir" + UUID.randomUUID();
             FileSystemUtils.copyDirectory(CHECK_CRC32_PATH, dest, TXT_FILTER);
@@ -184,11 +177,9 @@ public class FileSystemUtilsTest extends AbstractTest {
         final String dest3 = "target/dir" + UUID.randomUUID();
         try {
             FileSystemUtils.copyDirectory(CHECK_CRC32_PATH, CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER);
-            if (SystemUtils.isWindows()) {
-                assertEquals(CHECK_CRC32_VALUE_WIN, FileCRC32Utils.getCRC32(CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER));
-            } else {
-                assertEquals(CHECK_CRC32_VALUE_UNIX, FileCRC32Utils.getCRC32(CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER));
-            }
+
+            assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_TARGET_PATH, XML_FILENAME_FILTER));
+
             FileSystemUtils.copyDirectory(CHECK_CRC32_PATH, CHECK_CRC32_TARGET_PATH + 2, TXT_FILTER);
 
             FileSystemUtils.moveDirectory(CHECK_CRC32_TARGET_PATH, dest);
@@ -430,33 +421,18 @@ public class FileSystemUtilsTest extends AbstractTest {
      */
     @Test
     public void testGetSize() throws IOException {
-        if (SystemUtils.isWindows()) {
-            assertEquals(CHECK_CRC32_PATH_SIZE_WIN, FileSystemUtils.getSize(CHECK_CRC32_PATH));
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(CHECK_CRC32_PATH, XML_FILE_FILTER));
-            assertEquals(CHECK_CRC32_PATH_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH)));
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILENAME_FILTER));
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILE_FILTER));
+        assertEquals(CHECK_CRC32_PATH_SIZE, FileSystemUtils.getSize(CHECK_CRC32_PATH));
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(CHECK_CRC32_PATH, XML_FILE_FILTER));
+        assertEquals(CHECK_CRC32_PATH_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH)));
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILENAME_FILTER));
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILE_FILTER));
 
-            assertEquals(CHECK_CRC32_PATH_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH).getParentFile()));
+        assertEquals(CHECK_CRC32_PATH_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH).getParentFile()));
 
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE)));
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILENAME_FILTER));
-            assertEquals(CHECK_CRC32_FILE_SIZE_WIN, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILE_FILTER));
-        } else {
-            assertEquals(CHECK_CRC32_PATH_SIZE_UNIX, FileSystemUtils.getSize(CHECK_CRC32_PATH));
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(CHECK_CRC32_PATH, XML_FILE_FILTER));
-            assertEquals(CHECK_CRC32_PATH_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH)));
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILENAME_FILTER));
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILE_FILTER));
-
-            assertEquals(CHECK_CRC32_PATH_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH).getParentFile()));
-
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE)));
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILENAME_FILTER));
-            assertEquals(CHECK_CRC32_FILE_SIZE_UNIX, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILE_FILTER));
-        }
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE)));
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILENAME_FILTER));
+        assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILE_FILTER));
 
         assertException(() -> {
             FileSystemUtils.getSize((String) null);
