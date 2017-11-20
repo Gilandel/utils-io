@@ -27,8 +27,14 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import fr.landel.utils.commons.StringUtils;
 
 /**
  * Check {@link FileCRC32Utils}
@@ -38,6 +44,8 @@ import org.junit.Test;
  *
  */
 public class FileCRC32UtilsTest extends AbstractTest {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileCRC32UtilsTest.class);
 
     private static final String XML_EXT = "xml";
     private static final FilenameFilter XML_FILENAME_FILTER = FileSystemUtils.createFilenameFilter(XML_EXT);
@@ -47,7 +55,9 @@ public class FileCRC32UtilsTest extends AbstractTest {
     private static final String CHECK_CRC32_FILE = CHECK_CRC32_PATH + "/checkCRC32.xml";
 
     private static final Long CHECK_CRC32_VALUE = 1_476_569_244L;
-    private static final Long CHECK_CRC32_DIR_VALUE = 914_046_700L;
+    private static final Long CHECK_CRC32_DIR_VALUE1 = 914_046_700L;
+    private static final Long CHECK_CRC32_DIR_VALUE2 = 1_208_031_330L;
+    private static final List<Long> CHECK_CRC32_DIR_VALUES = Arrays.asList(CHECK_CRC32_DIR_VALUE1, CHECK_CRC32_DIR_VALUE2);
 
     /**
      * Test constructor for {@link FileCRC32Utils} .
@@ -70,7 +80,13 @@ public class FileCRC32UtilsTest extends AbstractTest {
             assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILENAME_FILTER));
             assertEquals(CHECK_CRC32_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH, XML_FILE_FILTER));
 
-            assertEquals(CHECK_CRC32_DIR_VALUE, FileCRC32Utils.getCRC32(CHECK_CRC32_PATH));
+            final Long crc32 = FileCRC32Utils.getCRC32(CHECK_CRC32_PATH);
+            final String expected = StringUtils.joinComma(CHECK_CRC32_DIR_VALUES);
+            
+            LOGGER.info("Expected CRC: {}, actual: {}", expected, crc32);
+            
+            assertTrue(StringUtils.inject("FileCRC32Utils.getCRC32 result {} doesn't match expected values: {}", crc32, expected),
+            		CHECK_CRC32_DIR_VALUES.contains(crc32));
 
             final File emptyDir = new File("target/empty");
             assertTrue(FileSystemUtils.createDirectory(emptyDir));
