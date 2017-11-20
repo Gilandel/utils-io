@@ -2,12 +2,19 @@
  * #%L
  * utils-io
  * %%
- * Copyright (C) 2016 - 2017 Gilandel
+ * Copyright (C) 2016 - 2017 Gilles Landel
  * %%
- * Authors: Gilles Landel
- * URL: https://github.com/Gilandel
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
- * This file is under Apache License, version 2.0 (2004).
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  * #L%
  */
 package fr.landel.utils.io;
@@ -19,6 +26,8 @@ import static fr.landel.utils.io.SystemProperties.CDRAMS_VERBOSE;
 import static fr.landel.utils.io.SystemProperties.COM_SUN_MIDP_IMPLEMENTATION;
 import static fr.landel.utils.io.SystemProperties.COM_SUN_PACKAGE_SPEC_VERSION;
 import static fr.landel.utils.io.SystemProperties.JAVA_COMPILER;
+import static fr.landel.utils.io.SystemProperties.JAVA_ENDORSED_DIR;
+import static fr.landel.utils.io.SystemProperties.JAVA_EXT_DIR;
 import static fr.landel.utils.io.SystemProperties.MICROEDITION_COMMPORTS;
 import static fr.landel.utils.io.SystemProperties.MICROEDITION_CONFIGURATION;
 import static fr.landel.utils.io.SystemProperties.MICROEDITION_ENCODING;
@@ -27,6 +36,7 @@ import static fr.landel.utils.io.SystemProperties.MICROEDITION_LOCALE;
 import static fr.landel.utils.io.SystemProperties.MICROEDITION_PLATFORM;
 import static fr.landel.utils.io.SystemProperties.MICROEDITION_PROFILES;
 import static fr.landel.utils.io.SystemProperties.MICROEDITION_SECURERANDOM_NOFALLBACK;
+import static fr.landel.utils.io.SystemProperties.SUN_BOOT_CLASS_PATH;
 import static fr.landel.utils.io.SystemProperties.SUN_CPU_ISALIST;
 import static fr.landel.utils.io.SystemProperties.SUN_DESKTOP;
 import static fr.landel.utils.io.SystemProperties.SUN_JAVA2D_FONTPATH;
@@ -87,7 +97,7 @@ public class SystemPropertiesTest extends AbstractTest {
                 USER_REGION, SUN_DESKTOP, SUN_CPU_ISALIST, SUN_JAVA2D_FONTPATH, SUN_MISC_PRODUCT, CDRAMS_DECORATIONS, CDRAMS_PRESENTATION,
                 CDRAMS_REPOSITORY, CDRAMS_VERBOSE, COM_SUN_MIDP_IMPLEMENTATION, COM_SUN_PACKAGE_SPEC_VERSION, MICROEDITION_COMMPORTS,
                 MICROEDITION_CONFIGURATION, MICROEDITION_ENCODING, MICROEDITION_HOSTNAME, MICROEDITION_LOCALE, MICROEDITION_PLATFORM,
-                MICROEDITION_PROFILES, MICROEDITION_SECURERANDOM_NOFALLBACK);
+                MICROEDITION_PROFILES, MICROEDITION_SECURERANDOM_NOFALLBACK, JAVA_ENDORSED_DIR, JAVA_EXT_DIR, SUN_BOOT_CLASS_PATH);
 
         LOGGER.info("----- FOUND PROPS");
         Arrays.asList(SystemProperties.values()).stream().filter(p -> StringUtils.isNotEmpty(p.getValue()))
