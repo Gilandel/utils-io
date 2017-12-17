@@ -33,6 +33,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.junit.After;
@@ -48,6 +51,9 @@ import fr.landel.utils.assertor.Assertor;
  *
  */
 public class FileUtilsTest extends AbstractTest {
+
+    private static final String CHECK_PROPERTIES_PATH = "src/test/resources";
+    private static final String CHECK_PROPERTIES_FILE = "file.properties";
 
     private static final String CHECK_CRC32_PATH = "src/test/resources/io";
     private static final String CHECK_CRC32_TARGET_PATH = "target/io";
@@ -117,6 +123,44 @@ public class FileUtilsTest extends AbstractTest {
         } catch (IOException e) {
             fail(e.getMessage());
         }
+    }
+
+    /**
+     * Test method for {@link FileUtils#getProperties} .
+     */
+    @Test
+    public void testGetProperties() {
+
+        Optional<Properties> properties = FileUtils.getProperties(CHECK_PROPERTIES_PATH);
+        assertFalse(properties.isPresent());
+
+        // String
+        properties = FileUtils.getProperties(CHECK_PROPERTIES_PATH, CHECK_PROPERTIES_FILE);
+        assertTrue(properties.isPresent());
+
+        assertEquals(" AND ", properties.get().getProperty("operator.and"));
+        assertEquals("the combination '{0}' and '{1}' is invalid", properties.get().getProperty("invalid.without.message"));
+
+        // Path
+        properties = FileUtils.getProperties(Paths.get(CHECK_PROPERTIES_PATH, CHECK_PROPERTIES_FILE));
+        assertTrue(properties.isPresent());
+
+        assertEquals(" AND ", properties.get().getProperty("operator.and"));
+        assertEquals("the combination '{0}' and '{1}' is invalid", properties.get().getProperty("invalid.without.message"));
+
+        // File
+        properties = FileUtils.getProperties(new File(CHECK_PROPERTIES_PATH, CHECK_PROPERTIES_FILE));
+        assertTrue(properties.isPresent());
+
+        assertEquals(" AND ", properties.get().getProperty("operator.and"));
+        assertEquals("the combination '{0}' and '{1}' is invalid", properties.get().getProperty("invalid.without.message"));
+
+        // Supplier
+        properties = FileUtils.getProperties(() -> FileUtilsTest.class.getClassLoader().getResourceAsStream(CHECK_PROPERTIES_FILE));
+        assertTrue(properties.isPresent());
+
+        assertEquals(" AND ", properties.get().getProperty("operator.and"));
+        assertEquals("the combination '{0}' and '{1}' is invalid", properties.get().getProperty("invalid.without.message"));
     }
 
     /**

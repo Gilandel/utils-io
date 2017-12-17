@@ -29,12 +29,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Properties;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.landel.utils.assertor.Assertor;
+import fr.landel.utils.commons.function.SupplierThrowable;
 
 /**
  * This class is used to read and write files.
@@ -83,6 +92,13 @@ public final class FileUtils {
     private static final String C = String.valueOf(CR);
     private static final String L = String.valueOf(LF);
     private static final int BUFFER_SIZE = 10240;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileUtils.class);
+
+    private static final String MISSING_PATH = "The path parameter cannot be null";
+    private static final String MISSING_FILE = "The file parameter cannot be null";
+    private static final String MISSING_SUPPLIER = "The supplier parameter cannot be null";
+    private static final String ERROR_PROPERTIES = "An error occurs while loading the properties file";
 
     /**
      * Constructor.
@@ -247,6 +263,80 @@ public final class FileUtils {
             // size
             content.append(new String(baos.toByteArray(), 0, baos.size(), charset));
         }
+    }
+
+    /**
+     * Load a properties file from a {@link String}
+     * 
+     * @param path
+     *            the path of the properties
+     * @param more
+     *            additional strings to be joined to form the path string
+     * @return if correctly loaded, an optional with the properties object
+     *         otherwise an empty optional
+     * @throws NullPointerException
+     *             if {@code path} is {@code null}
+     */
+    public static Optional<Properties> getProperties(final String path, final String... more) {
+        Objects.requireNonNull(path, MISSING_PATH);
+
+        return getProperties(Paths.get(path, more));
+    }
+
+    /**
+     * Load a properties file from a {@link Path}
+     * 
+     * @param file
+     *            the properties file
+     * @return if correctly loaded, an optional with the properties object
+     *         otherwise an empty optional
+     * @throws NullPointerException
+     *             if {@code path} is {@code null}
+     */
+    public static Optional<Properties> getProperties(final File file) {
+        Objects.requireNonNull(file, MISSING_FILE);
+
+        return getProperties(() -> new BufferedInputStream(new FileInputStream(file)));
+    }
+
+    /**
+     * Load a properties file from a {@link Path}
+     * 
+     * @param path
+     *            the path of the properties
+     * @return if correctly loaded, an optional with the properties object
+     *         otherwise an empty optional
+     * @throws NullPointerException
+     *             if {@code path} is {@code null}
+     */
+    public static Optional<Properties> getProperties(final Path path) {
+        Objects.requireNonNull(path, MISSING_PATH);
+
+        return getProperties(() -> Files.newInputStream(path));
+    }
+
+    /**
+     * Load a properties file from a supplier
+     * 
+     * @param supplier
+     *            the {@link InputStream} supplier
+     * @return if correctly loaded, an optional with the properties object
+     *         otherwise an empty optional
+     * @throws NullPointerException
+     *             if {@code supplier} is {@code null}
+     */
+    public static Optional<Properties> getProperties(final SupplierThrowable<InputStream, IOException> supplier) {
+
+        Objects.requireNonNull(supplier, MISSING_SUPPLIER);
+
+        final Properties props = new Properties();
+        try (final InputStream is = supplier.get()) {
+            props.load(is);
+        } catch (final IOException e) {
+            LOGGER.error(ERROR_PROPERTIES, e);
+            return Optional.empty();
+        }
+        return Optional.of(props);
     }
 
     /**

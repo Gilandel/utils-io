@@ -64,6 +64,8 @@ public class FileSystemUtilsTest extends AbstractTest {
     private static final long CHECK_CRC32_PATH_SIZE = 1_160L;
     private static final long CHECK_CRC32_FILE_SIZE = 1_143L;
 
+    private static final long CHECK_PROPERTIES_SIZE = 169;
+
     private static final String ERROR_PARAM_NULL = "At least one parameter is null";
 
     /**
@@ -435,7 +437,7 @@ public class FileSystemUtilsTest extends AbstractTest {
         assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILENAME_FILTER));
         assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH), XML_FILE_FILTER));
 
-        assertEquals(CHECK_CRC32_PATH_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH).getParentFile()));
+        assertEquals(CHECK_CRC32_PATH_SIZE + CHECK_PROPERTIES_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_PATH).getParentFile()));
 
         assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE)));
         assertEquals(CHECK_CRC32_FILE_SIZE, FileSystemUtils.getSize(new File(CHECK_CRC32_FILE), XML_FILENAME_FILTER));

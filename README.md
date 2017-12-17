@@ -37,5 +37,9 @@ Work progress:
 - SystemProperties: A list of system properties (like os.name, java.home,...)
 - SystemUtils: To get operating system info
 
+## Changelog
+### 1.0.3 - 2017-12-17
+- New: add properties loader functions (FileUtils#getProperties)
+
 ## License
 Apache License, version 2.0
