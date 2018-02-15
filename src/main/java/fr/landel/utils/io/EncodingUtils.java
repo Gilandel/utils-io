@@ -38,83 +38,83 @@ public final class EncodingUtils {
     /**
      * UTF-1 BOM, the UTF-1 byte order mark = F7 64 4C
      */
-    public static final String BOM_UTF_1 = String.valueOf(new char[] {0xF7, 0x64, 0x4C});
+    public static final char[] BOM_UTF_1 = new char[] {0xF7, 0x64, 0x4C};
 
     /**
      * UTF-7 BOM, the UTF-7 byte order mark = 2B 2F 76 (38 | 39 | 2B | 2F | 38
      * 2D)
      */
-    public static final String BOM_UTF_7_V1 = String.valueOf(new char[] {0x2B, 0x2F, 0x76, 0x38});
+    public static final char[] BOM_UTF_7_V1 = new char[] {0x2B, 0x2F, 0x76, 0x38};
 
     /**
      * UTF-7 BOM, the UTF-7 byte order mark = 2B 2F 76 (38 | 39 | 2B | 2F | 38
      * 2D)
      */
-    public static final String BOM_UTF_7_V2 = String.valueOf(new char[] {0x2B, 0x2F, 0x76, 0x39});
+    public static final char[] BOM_UTF_7_V2 = new char[] {0x2B, 0x2F, 0x76, 0x39};
 
     /**
      * UTF-7 BOM, the UTF-7 byte order mark = 2B 2F 76 (38 | 39 | 2B | 2F | 38
      * 2D)
      */
-    public static final String BOM_UTF_7_V3 = String.valueOf(new char[] {0x2B, 0x2F, 0x76, 0x2B});
+    public static final char[] BOM_UTF_7_V3 = new char[] {0x2B, 0x2F, 0x76, 0x2B};
 
     /**
      * UTF-7 BOM, the UTF-7 byte order mark = 2B 2F 76 (38 | 39 | 2B | 2F | 38
      * 2D)
      */
-    public static final String BOM_UTF_7_V4 = String.valueOf(new char[] {0x2B, 0x2F, 0x76, 0x2F});
+    public static final char[] BOM_UTF_7_V4 = new char[] {0x2B, 0x2F, 0x76, 0x2F};
 
     /**
      * UTF-7 BOM, the UTF-7 byte order mark = 2B 2F 76 (38 | 39 | 2B | 2F | 38
      * 2D)
      */
-    public static final String BOM_UTF_7_V5 = String.valueOf(new char[] {0x2B, 0x2F, 0x76, 0x38, 0x2D});
+    public static final char[] BOM_UTF_7_V5 = new char[] {0x2B, 0x2F, 0x76, 0x38, 0x2D};
 
     /**
      * UTF-8 BOM, the UTF-8 byte order mark = EF BB BF
      */
-    public static final String BOM_UTF_8 = String.valueOf(new char[] {0xEF, 0xBB, 0xBF});
+    public static final char[] BOM_UTF_8 = new char[] {0xEF, 0xBB, 0xBF};
 
     /**
      * UTF-16 BOM, the UTF-16 byte order mark = FE FF (Big Endian)
      */
-    public static final String BOM_UTF_16_BE = String.valueOf(new char[] {0xFE, 0xFF});
+    public static final char[] BOM_UTF_16_BE = new char[] {0xFE, 0xFF};
 
     /**
      * UTF-16 BOM, the UTF-16 byte order mark = FF FE (Little Endian)
      */
-    public static final String BOM_UTF_16_LE = String.valueOf(new char[] {0xFF, 0xFE});
+    public static final char[] BOM_UTF_16_LE = new char[] {0xFF, 0xFE};
 
     /**
      * UTF-32 BOM, the UTF-32 byte order mark = 00 00 FE FF (Big Endian)
      */
-    public static final String BOM_UTF_32_BE = String.valueOf(new char[] {0, 0, 0xFE, 0xFF});
+    public static final char[] BOM_UTF_32_BE = new char[] {0, 0, 0xFE, 0xFF};
 
     /**
      * UTF-32 BOM, the UTF-32 byte order mark = FF FE 00 00 (Little Endian)
      */
-    public static final String BOM_UTF_32_LE = String.valueOf(new char[] {0xFF, 0xFE, 0, 0});
+    public static final char[] BOM_UTF_32_LE = new char[] {0xFF, 0xFE, 0, 0};
 
     /**
      * UTF-EBCDIC BOM, the UTF-EBCDIC byte order mark = DD 73 66 73
      */
-    public static final String BOM_UTF_EBCDIC = String.valueOf(new char[] {0xDD, 0x73, 0x66, 0x73});
+    public static final char[] BOM_UTF_EBCDIC = new char[] {0xDD, 0x73, 0x66, 0x73};
 
     /**
      * SCSU BOM, the Standard Compression Scheme for Unicode byte order mark =
      * 0E FE FF
      */
-    public static final String BOM_SCSU = String.valueOf(new char[] {0x0E, 0xFE, 0xFF});
+    public static final char[] BOM_SCSU = new char[] {0x0E, 0xFE, 0xFF};
 
     /**
      * BOCU-1 BOM, the BOCU-1 byte order mark = FB EE 28
      */
-    public static final String BOM_BOCU_1 = String.valueOf(new char[] {0xFB, 0xEE, 0x28});
+    public static final char[] BOM_BOCU_1 = new char[] {0xFB, 0xEE, 0x28};
 
     /**
      * GB-18030 BOM, the GB-18030 byte order mark = 84 31 95 33
      */
-    public static final String BOM_GB_18030 = String.valueOf(new char[] {0x84, 0x31, 0x95, 0x33});
+    public static final char[] BOM_GB_18030 = new char[] {0x84, 0x31, 0x95, 0x33};
 
     /**
      * US ASCII encoding
@@ -179,7 +179,7 @@ public final class EncodingUtils {
     /**
      * The Byte Order Mark map (key = encoding name, value = the BOM)
      */
-    public static final Map<String, String> BOM_LIST;
+    public static final Map<String, char[]> BOM_LIST;
 
     /**
      * The encoding list (supported by JAVA)
@@ -193,7 +193,7 @@ public final class EncodingUtils {
     public static final Map<String, Charset> CHARSET_LIST;
 
     static {
-        Map<String, String> bom = new LinkedHashMap<>();
+        Map<String, char[]> bom = new LinkedHashMap<>();
 
         bom.put("UTF-1", BOM_UTF_1);
         bom.put("UTF-7_v1", BOM_UTF_7_V1);
