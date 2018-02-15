@@ -22,7 +22,7 @@ Work progress:
 <dependency>
 	<groupId>fr.landel.utils</groupId>
 	<artifactId>utils-io</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 </dependency>
 ```
 
@@ -38,6 +38,9 @@ Work progress:
 - SystemUtils: To get operating system info
 
 ## Changelog
+### 1.0.4 - 2018-02-15
+- Fix: correct BOM values (EncodingUtils)
+
 ### 1.0.3 - 2017-12-17
 - New: add properties loader functions (FileUtils#getProperties)
 
