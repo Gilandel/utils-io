@@ -21,7 +21,7 @@ Work progress:
 <dependency>
 	<groupId>fr.landel.utils</groupId>
 	<artifactId>utils-io</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 </dependency>
 ```
 
@@ -37,6 +37,10 @@ Work progress:
 - SystemUtils: To get operating system info
 
 ## Changelog
+### 1.0.5 - 2018-07-02
+- Misc: update dependencies
+- Misc: remove classpath definition from JAR (Wildfly warning when some dependencies are in multiple versions and defined provided)
+
 ### 1.0.4 - 2018-02-15
 - Fix: correct BOM values (EncodingUtils)
 
