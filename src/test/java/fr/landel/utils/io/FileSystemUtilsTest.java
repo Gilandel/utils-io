@@ -19,11 +19,11 @@
  */
 package fr.landel.utils.io;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -34,8 +34,8 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import fr.landel.utils.assertor.Assertor;
 
@@ -74,7 +74,7 @@ public class FileSystemUtilsTest extends AbstractTest {
      * @throws IOException
      *             on error
      */
-    @After
+    @AfterEach
     public void dispose() throws IOException {
         File target = new File(CHECK_CRC32_TARGET_PATH);
 
